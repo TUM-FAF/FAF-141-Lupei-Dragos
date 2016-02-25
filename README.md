@@ -1,1 +1,8 @@
-Bine ati venit in universul meu :D
+##WP Labs
+### Personal Information
+
+**Student:** Lupei Dragoș
+
+**Group:** FAF-141
+
+
