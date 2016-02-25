@@ -3,7 +3,8 @@
 #include <tchar.h>
 #define IDC_BUTTON_1 102
 #define IDC_BUTTON_2 103
-
+#define IDC_TEXTAREA1 104
+#define IDC_TEXTAREA2 105
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
 
@@ -76,7 +77,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     PAINTSTRUCT ps;
     HDC hdc;
     RECT rect;
-    static HWND button1, button2;
+    static HWND button1, button2, text1, text2;
     static int cxCoord, cyCoord;
     switch (message){
         case WM_CREATE:{
@@ -90,6 +91,14 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                                        WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON|BS_OWNERDRAW,
                                        0, 0, 0, 0,
                                        hwnd, (HMENU)IDC_BUTTON_2, GetModuleHandle(NULL), NULL);
+             text1 = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), TEXT(" "),
+                                       WS_VISIBLE | WS_CHILD | ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL,
+                                       0, 0, 0, 0,
+                                       hwnd, (HMENU)IDC_TEXTAREA1, GetModuleHandle(NULL), NULL);
+             text2 = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), TEXT(" "),
+                                       WS_VISIBLE | WS_CHILD | ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL,
+                                       0, 0, 0, 0,
+                                       hwnd, (HMENU)IDC_TEXTAREA2, GetModuleHandle(NULL), NULL);
 
         break;}
          case WM_SIZE:
@@ -97,6 +106,8 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             cyCoord = HIWORD(lParam); // 375
             MoveWindow(button1, cxCoord-150, cyCoord/3-80, 110, 40, TRUE);
             MoveWindow(button2, cxCoord-150, cyCoord/3-25, 110, 40, TRUE);
+            MoveWindow(text1, 15, 30, cxCoord-200, cyCoord/3, TRUE);
+            MoveWindow(text2, 15, cyCoord/2+30, cxCoord-200, cyCoord/3, TRUE);
             break;
 
      case WM_PAINT:
@@ -106,7 +117,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         EndPaint(hwnd, &ps);
         return 0;
         break;
- case WM_DRAWITEM:
+    case WM_DRAWITEM:
             if ((UINT)wParam == IDC_BUTTON_2) {
                 LPDRAWITEMSTRUCT lpdis = (DRAWITEMSTRUCT*)lParam;
                 SIZE size;
@@ -145,6 +156,15 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             winSize->ptMaxTrackSize.y = 425;
             break;
         }
+    case WM_CTLCOLOREDIT: {
+               if(IDC_TEXTAREA2 == GetDlgCtrlID((HWND)lParam))
+               {
+                    HDC hdcStatic = (HDC) wParam;
+                    SetBkColor(hdcStatic, RGB(255,255,204));
+                    return (INT_PTR)CreateSolidBrush(RGB(255,255,204));
+                }
+                break;
+            }
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
