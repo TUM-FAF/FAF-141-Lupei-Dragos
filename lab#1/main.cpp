@@ -87,7 +87,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                                        0, 0,0, 0,
                                        hwnd, (HMENU)IDC_BUTTON_1, GetModuleHandle(NULL), NULL);
             button2 =  CreateWindowEx(NULL, TEXT("BUTTON"), TEXT("Button2"),
-                                       WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+                                       WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON|BS_OWNERDRAW,
                                        0, 0, 0, 0,
                                        hwnd, (HMENU)IDC_BUTTON_2, GetModuleHandle(NULL), NULL);
 
@@ -106,6 +106,45 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         EndPaint(hwnd, &ps);
         return 0;
         break;
+ case WM_DRAWITEM:
+            if ((UINT)wParam == IDC_BUTTON_2) {
+                LPDRAWITEMSTRUCT lpdis = (DRAWITEMSTRUCT*)lParam;
+                SIZE size;
+                char button2[6];
+                strcpy(button2, "Button2");
+                GetTextExtentPoint32(lpdis->hDC, button2, strlen(button2), &size);
+                SetTextColor(lpdis->hDC, RGB(0,40,255));
+                SetBkColor(lpdis->hDC, RGB(0,0,0));
+
+                ExtTextOut(
+                    lpdis->hDC,
+                    ((lpdis->rcItem.right - lpdis->rcItem.left) - size.cx) / 2,
+                    ((lpdis->rcItem.bottom - lpdis->rcItem.top) - size.cy) / 2,
+                    ETO_OPAQUE | ETO_CLIPPED,
+                    &lpdis->rcItem,
+                    button2,
+                    strlen(button2),
+                    NULL);
+
+                DrawEdge(
+                    lpdis->hDC,
+                    &lpdis->rcItem,
+                    (lpdis->itemState & ODS_SELECTED ? EDGE_SUNKEN : EDGE_RAISED ),
+                    BF_RECT);
+                return TRUE;
+			}
+
+
+			break;
+     case WM_GETMINMAXINFO:
+        {
+            LPMINMAXINFO winSize = (LPMINMAXINFO)lParam;
+            winSize->ptMinTrackSize.x = 510;
+            winSize->ptMinTrackSize.y = 375;
+            winSize->ptMaxTrackSize.x = 630;
+            winSize->ptMaxTrackSize.y = 425;
+            break;
+        }
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
