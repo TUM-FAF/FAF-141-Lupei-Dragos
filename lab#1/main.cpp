@@ -1,4 +1,8 @@
 #include <windows.h>
+#include <stdlib.h>
+#include <tchar.h>
+#define IDC_BUTTON_1 102
+#define IDC_BUTTON_2 103
 
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
@@ -15,7 +19,7 @@ int WINAPI WinMain (HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpsz
   wincl.hInstance = hThisInstance;
   wincl.lpszClassName = szClassName;
   wincl.lpfnWndProc = WindowProcedure;      /* This function is called by windows */
-  wincl.style = CS_DBLCLKS;                 /* Catch double-clicks */
+  wincl.style = CS_HREDRAW | CS_VREDRAW;              /* Catch double-clicks */
   wincl.cbSize = sizeof (WNDCLASSEX);
 
   /* Use default icon and mouse-pointer */
@@ -26,7 +30,7 @@ int WINAPI WinMain (HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpsz
   wincl.cbClsExtra = 0;                      /* No extra bytes after the window class */
   wincl.cbWndExtra = 0;                      /* structure or the window instance */
   /* Use Windows's default colour as the background of the window */
-  wincl.hbrBackground = (HBRUSH) COLOR_BACKGROUND;
+  wincl.hbrBackground = (HBRUSH) GetStockObject(WHITE_BRUSH);
 
   /* Register the window class, and if it fails quit the program */
   if (!RegisterClassEx (&wincl))
@@ -39,9 +43,10 @@ int WINAPI WinMain (HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpsz
     "WP Lab#1 example",  /* Title Text */
     WS_OVERLAPPEDWINDOW, /* default window */
     CW_USEDEFAULT,       /* Windows decides the position */
+
     CW_USEDEFAULT,       /* where the window ends up on the screen */
-    600,                 /* The programs width */
-    400,                 /* and height in pixels */
+    544,                 /* The programs width */
+    375,                 /* and height in pixels */
     HWND_DESKTOP,        /* The window is a child-window to desktop */
     NULL,                /* No menu */
     hThisInstance,       /* Program Instance handler */
@@ -71,8 +76,29 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     PAINTSTRUCT ps;
     HDC hdc;
     RECT rect;
-    switch (message)
-    {
+    static HWND button1, button2;
+    static int cxCoord, cyCoord;
+    switch (message){
+        case WM_CREATE:{
+
+
+            button1 = CreateWindowEx(NULL, TEXT("BUTTON"), TEXT("Button1"),
+                                       WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON ,
+                                       0, 0,0, 0,
+                                       hwnd, (HMENU)IDC_BUTTON_1, GetModuleHandle(NULL), NULL);
+            button2 =  CreateWindowEx(NULL, TEXT("BUTTON"), TEXT("Button2"),
+                                       WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+                                       0, 0, 0, 0,
+                                       hwnd, (HMENU)IDC_BUTTON_2, GetModuleHandle(NULL), NULL);
+
+        break;}
+         case WM_SIZE:
+            cxCoord = LOWORD(lParam); // 544
+            cyCoord = HIWORD(lParam); // 375
+            MoveWindow(button1, cxCoord-150, cyCoord/3-80, 110, 40, TRUE);
+            MoveWindow(button2, cxCoord-150, cyCoord/3-25, 110, 40, TRUE);
+            break;
+
      case WM_PAINT:
         hdc = BeginPaint(hwnd,&ps);
         GetClientRect (hwnd, &rect);
