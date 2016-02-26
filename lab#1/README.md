@@ -11,18 +11,24 @@ Main purposes of this lab work:
 
 •study Win32 API.
 
-Objectives:
+What I did?
 --------------------
-•Create a Windows application
+•Created a Windows application
 
-•In the middle of the window should be present the following text: "Done with Pride and Prejudice by Lupei Dragos".
+•In the middle of the window inserted the following text: "Done with Pride and Prejudice by Lupei Dragos".
 
-•On windows resize, text should reflow and be in window's middle (vertically and horizontally)
+•On windows resize, text  reflow and it i in window's middle (vertically and horizontally)
 
-•Add 2 buttons to window: one with default styles, one with custom styles (size, background, text color, font family, font size)
+•Added 2 buttons to window: one with default styles, one with custom styles ( background, text color)
 
-•Add 2 text elements to window: one with default styles, one with custom styles (size, background, text color, font family, font size)
+•Added 2 text elements to window: one with default styles, one with custom styles (background, text color)
 
+•I made elements to interact 
+When you click on "Clear" button , the text from first box is deleted
+When you click on "Copy Text" button, the text from box 1 is copied to box 2
+
+•I changed  behavior of maximize and close buttons
+You should run this!!!"IT IS OBLIGATORY"
 
 Creation steps of the app:
 --------------------------
