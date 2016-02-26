@@ -11,13 +11,6 @@ Main purposes of this lab work:
 
 •study Win32 API.
 
-
-Secondary purposes of this lab work:
-
-•use a Version Control Systems (GIT).
-
-•write code according to a Programming Style Guide.
-
 Mandatory Objectives:
 --------------------
 •Create a Windows application
