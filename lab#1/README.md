@@ -11,15 +11,15 @@ Main purposes of this lab work:
 
 •study Win32 API.
 
-Mandatory Objectives:
+Objectives:
 --------------------
 •Create a Windows application
 
-•Choose Programming Style Guidelines that you'll follow
+•In the middle of the window should be present the following text: "Done with Pride and Prejudice by Lupei Dragos".
+
+•On windows resize, text should reflow and be in window's middle (vertically and horizontally)
 
 •Add 2 buttons to window: one with default styles, one with custom styles (size, background, text color, font family, font size)
-
-•Add 2 text inputs to window: one with default styles, one with custom styles (size, background, text color, font family, font size)
 
 •Add 2 text elements to window: one with default styles, one with custom styles (size, background, text color, font family, font size)
 
