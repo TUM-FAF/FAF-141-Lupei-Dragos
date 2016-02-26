@@ -79,11 +79,15 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     RECT rect;
     static HWND button1, button2, text1, text2;
     static int cxCoord, cyCoord;
+    LRESULT textSize;
+    char box2[2000];
+    int screenW;
+    int screenH;
     switch (message){
         case WM_CREATE:{
 
 
-            button1 = CreateWindowEx(NULL, TEXT("BUTTON"), TEXT("Button1"),
+            button1 = CreateWindowEx(NULL, TEXT("BUTTON"), TEXT("Clear"),
                                        WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON ,
                                        0, 0,0, 0,
                                        hwnd, (HMENU)IDC_BUTTON_1, GetModuleHandle(NULL), NULL);
@@ -100,6 +104,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                                        0, 0, 0, 0,
                                        hwnd, (HMENU)IDC_TEXTAREA2, GetModuleHandle(NULL), NULL);
 
+
         break;}
          case WM_SIZE:
             cxCoord = LOWORD(lParam); // 544
@@ -114,6 +119,15 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         hdc = BeginPaint(hwnd,&ps);
         GetClientRect (hwnd, &rect);
         DrawText(hdc,TEXT("Done with Pride and Prejudice by Dragos Lupei "),-1,&rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+         DrawText(hdc,TEXT("How are you today? "),-1,&rect, DT_SINGLELINE | DT_CENTER | DT_TOP);
+            SetBkColor(hdc, RGB(255,225,196));
+             SetTextColor(hdc, RGB(0,0,128));
+        DrawText(hdc,TEXT("Good, thank you "),-1,&rect, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
+
+
+
+
+
         EndPaint(hwnd, &ps);
         return 0;
         break;
@@ -121,8 +135,8 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             if ((UINT)wParam == IDC_BUTTON_2) {
                 LPDRAWITEMSTRUCT lpdis = (DRAWITEMSTRUCT*)lParam;
                 SIZE size;
-                char button2[6];
-                strcpy(button2, "Button2");
+                char button2[10];
+                strcpy(button2, "Copy text");
                 GetTextExtentPoint32(lpdis->hDC, button2, strlen(button2), &size);
                 SetTextColor(lpdis->hDC, RGB(0,40,255));
                 SetBkColor(lpdis->hDC, RGB(0,0,0));
@@ -147,6 +161,30 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
 
 
 			break;
+     case WM_COMMAND:
+            switch(LOWORD(wParam))
+            {
+
+
+                case IDC_BUTTON_1:
+                {
+                    SendMessage(text1, WM_SETTEXT, NULL, NULL);
+                    break;
+                }
+
+                 case IDC_BUTTON_2:
+                {
+                    textSize = SendMessage(text1, WM_GETTEXT, 100, (LPARAM)box2); // text size
+                    box2[textSize] = _T('\0'); // initialization with null character
+                    SendMessage(text2, EM_REPLACESEL, 0, (LPARAM)box2); // add inputed text to window
+                    SendMessage(text2, EM_REPLACESEL, 0, (LPARAM)" ");
+                    RedrawWindow(hwnd, NULL, NULL, RDW_INVALIDATE | RDW_ERASE);
+                    break;
+                }
+
+
+                }
+        break;
      case WM_GETMINMAXINFO:
         {
             LPMINMAXINFO winSize = (LPMINMAXINFO)lParam;
@@ -165,6 +203,32 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 }
                 break;
             }
+
+    case WM_SYSCOMMAND:
+        {
+            switch(wParam)
+            {
+                case SC_CLOSE:
+                {
+                    return MessageBox(NULL, TEXT("Trolololo"),
+                                       TEXT("Do you love me?"), MB_OK|MB_ICONSTOP);
+
+
+                    break;
+                }
+                  case SC_MAXIMIZE:
+                {
+                    if(MessageBox(hwnd, "Do you want to exit?", "IMPORTANT!!!!", MB_YESNO) == IDYES)
+                        {
+                        return MessageBox(NULL, TEXT(""),
+                                       TEXT("HAHAHAHAH"), MB_OK);
+                        }
+                        break;
+                }
+
+                }
+            }
+
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
