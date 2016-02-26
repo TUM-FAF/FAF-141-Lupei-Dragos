@@ -25,10 +25,12 @@ What I did?
 
 •I made elements to interact 
 When you click on "Clear" button , the text from first box is deleted
+
 When you click on "Copy Text" button, the text from box 1 is copied to box 2
 
 •I changed  behavior of maximize and close buttons
-You should run this!!!"IT IS OBLIGATORY"
+
+•You should run this!!!"IT IS OBLIGATORY"
 
 Creation steps of the app:
 --------------------------
