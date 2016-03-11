@@ -34,6 +34,7 @@ What I did?
 •Added an icon of the app and a different cursor from that is.
 
 •Added a List Box. You can add some item by typing the item in the first text area then clicking on button "Add to list" will add a new item to List Box.
+
 •Attached an event to List Box. When you right-click on some element will appear a message box that will ask for deleting the respective item from the list.
 
 •Others features remained from laboratory work #1
