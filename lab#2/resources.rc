@@ -1,0 +1,11 @@
+﻿#include "resources.h"
+
+//Icon
+
+IDI_ICON  ICON DISCARDABLE "icon.ico"
+
+//Cursor
+
+IDC_CURSOR CURSOR DISCARDABLE "cursor.cur"
+
+

@@ -204,30 +204,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 break;
             }
 
-    case WM_SYSCOMMAND:
-        {
-            switch(wParam)
-            {
-                case SC_CLOSE:
-                {
-                    return MessageBox(NULL, TEXT("Trolololo"),
-                                       TEXT("Do you love me?"), MB_OK|MB_ICONSTOP);
 
-
-                    break;
-                }
-                  case SC_MAXIMIZE:
-                {
-                    if(MessageBox(hwnd, "Do you want to exit?", "IMPORTANT!!!!", MB_YESNO) == IDYES)
-                        {
-                        return MessageBox(NULL, TEXT(""),
-                                       TEXT("HAHAHAHAH"), MB_OK);
-                        }
-                        break;
-                }
-
-                }
-            }
 
     case WM_DESTROY:
         PostQuitMessage(0);
