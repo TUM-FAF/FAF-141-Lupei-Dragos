@@ -5,13 +5,13 @@ Title
 Advanced Form Elements. Child Windowses. Basics of Working With Keyboard.
 Introduction
 ------------
-•Main purposes of this lab work:
-•The Keyboard
-•Child Window Controls
-••Scroll Bar
-••Listbox
-•Menus and Other Resources
-•Dialog Boxes
+Main purposes of this lab work:
+•The Keyboard.
+•Child Window Controls.
+Scroll Bar
+Listbox
+•Menus and Other Resources.
+•Dialog Boxes.
 
 
 What I did?
