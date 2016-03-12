@@ -16,7 +16,7 @@
 # Libraries
 *.lib
 *.a
-
+*.res
 # Shared objects (inc. Windows DLLs) + Compiled Dynamic libraries
 *.dll
 *.so
