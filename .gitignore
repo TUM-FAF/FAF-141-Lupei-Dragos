@@ -1,3 +1,13 @@
+# Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+
 # Compiled Object files
 *.slo
 *.lo
@@ -6,7 +16,7 @@
 # Libraries
 *.lib
 *.a
-
+*.res
 # Shared objects (inc. Windows DLLs) + Compiled Dynamic libraries
 *.dll
 *.so
@@ -26,7 +36,3 @@
 # CodeBlocks artefacts
 *.depend
 *.layout
-
-# MS Office trash
-~*.tmp
-~*.docx

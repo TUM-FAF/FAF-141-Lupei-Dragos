@@ -1,44 +1,41 @@
-Laboratory Work Nr.1
+Laboratory Work Nr.2
 ====================
 Title
 -----
-Window. Window handling. Basic window’s form elements.
+Advanced Form Elements. Child Windowses. Basics of Working With Keyboard.
 Introduction
 ------------
 Main purposes of this lab work:
 
-•understand Event-Driven Programming.
+•The Keyboard.
 
-•study Win32 API.
+•Child Window Controls.
+
+Scroll Bar
+
+Listbox
+
+•Menus and Other Resources.
+
+•Dialog Boxes.
+
+
 
 What I did?
 --------------------
-•Created a Windows application
+•Create a Windows application what will dispaly a dialog box when you will click on close button (X).
 
-•In the middle of the window inserted the following text: "Done with Pride and Prejudice by Lupei Dragos".
+•Added a system menu with two items. Item one have three subitems that do action like Minimize, Maximize,Exit.
 
-•On windows resize, text  reflow and it i in window's middle (vertically and horizontally)
+•I hooked a keyboard input. When you click ctrl+space your application will be stopped
 
-•Added 2 buttons to window: one with default styles, one with custom styles ( background, text color)
+•Added a scroll bar that change background color of a text element in middle of the app.
 
-•Added 2 text elements to window: one with default styles, one with custom styles (background, text color)
+•Added an icon of the app and a different cursor from that is.
 
-•I made elements to interact 
-When you click on "Clear" button , the text from first box is deleted
+•Added a List Box. You can add some item by typing the item in the first text area then clicking on button "Add to list" will add a new item to List Box.
 
-When you click on "Copy Text" button, the text from box 1 is copied to box 2
+•Attached an event to List Box. When you right-click on some element will appear a message box that will ask for deleting the respective item from the list.
 
-•I changed  behavior of maximize and close buttons
-
-•You should run this!!!"IT IS OBLIGATORY"
-
-Creation steps of the app:
---------------------------
-As a beginner in Windows Programming, I found very useful Charles Petzold's book- *"Programming Windows"*.It helped me a lot to get started. Reading it,I figured out the main concepts of an Windows application. During the development of my own app, [http://msdn.microsoft.com](http://msdn.microsoft.com) was also of great usage.
-
-Analysing the structure of my program,it can be divided in two main parts:WinMain function,which represents the entry point in the program and WinProc, which is the function that processes all messages sent or posted to all windows of the class. So,in WinMain I've declared the main window,while in WinProc I've created a list of messages as WM_CREATE, WM_PAINT, WM_DRAWITEM,WM_GETMINMAXINFO: and others, that I used to generate buttons,text elements and dialog boxes. 
-
-Conclusions:
---------------------------
-I learned how the elements of the window are created, how their behavior can be changed. I worked with messages, understood how the elements and their actions are interconnected. This concepts can be applied not only in windows programming, but also in another systems of programming.
+•Others features remained from laboratory work #1
 
