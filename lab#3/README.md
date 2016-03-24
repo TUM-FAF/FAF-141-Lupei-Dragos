@@ -30,15 +30,15 @@ What I did?
 
 •Created a drawing area where you can:
 
-To choose with what color you want to draw
+To choose with which color you want to draw
 
 Change thickness of the line
 
-Filling with color objects depend on what you draw
+Filling with color objects depending on what are you drawing
 
 Erase what you drew.
 
-•Added a custom Bitmap Image in the bottom left corner
+•Added a custom Bitmap Image in the left bottom corner
 
 •I hooked 2 keyboard inputs. 
 One is when you press on Ctrl+Space your mouse will be transformed in to an eraser
