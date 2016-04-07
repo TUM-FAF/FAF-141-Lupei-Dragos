@@ -17,7 +17,8 @@ What I did?
 
 •Solved flicking problem.
 
-		The primary cause of  flickering is erasing the background, then immediately drawing over it. Since we are apparently drawing the whole client area of our window in WM_PAINT, I added a handler for WM_ERASEBKGND that does nothing but return TRUE to indicate that the background has been erased.
+	The primary cause of  flickering is erasing the background, then immediately drawing over it. 
+	Since we are apparently drawing the whole client area of our window in WM_PAINT, I added a handler for WM_ERASEBKGND that does nothing but return TRUE to indicate that the background has been erased.
 
 •Added 2 animated objects which will interact with each other. Balls that have different velocity and moving angles. They should behave based on following rules:
 	
