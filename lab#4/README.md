@@ -29,8 +29,8 @@ The primary cause of  flickering is erasing the background, then immediately dra
 
 •I hooked 3 keyboard inputs:
 
-	When you press the UP button the speed of balls are increasing.
+	When you press the UP button the speed of circles is increasing.
 
-	When you press the DOWN button the speed of balls are increasing.
+	When you press the DOWN button the speed of circles is decreasing.
 
 	When you press the SPACEBAR you draw new circles with an increased velocity.
