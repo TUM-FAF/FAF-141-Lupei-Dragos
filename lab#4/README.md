@@ -6,7 +6,6 @@ Title
 
 Windows Timer. Animation.
 ------------
-Main purposes of this lab work:
 
 •Windows timer
 
