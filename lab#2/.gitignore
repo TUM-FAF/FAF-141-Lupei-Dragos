@@ -2,7 +2,7 @@
 *.slo
 *.lo
 *.o
-
+*.res
 # Libraries
 *.lib
 *.a
